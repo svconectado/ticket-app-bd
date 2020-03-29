@@ -12,7 +12,7 @@ tipo_establecimiento varchar(100)
 
 CREATE TABLE establecimiento(
 id_establecimiento integer PRIMARY KEY,
-id_tipo_establecimiento integer REFERENCES tipo_establecimiento(id_tipo_establecimiento)
+id_tipo_establecimiento integer REFERENCES tipo_establecimiento(id_tipo_establecimiento),
 nombre_establecimiento varchar(250),
 latitud float,
 longitud float,
