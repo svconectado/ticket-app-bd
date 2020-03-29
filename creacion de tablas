@@ -1,0 +1,28 @@
+CREATE TABLE usuario(
+id_usuario integer PRIMARY KEY,
+nombre varchar(40),
+tipo_notif char(3) NOT NULL,
+tipo_usuario varchar(15)
+);
+
+CREATE TABLE establecimiento(
+id_establecimiento integer PRIMARY KEY,
+nombre_establecimiento varchar(250),
+latitud float,
+longitud float,
+);
+
+CREATE TABLE cola(
+id_cola integer PRIMARY KEY,
+descripcion varchar(250),
+id_establecimiento integer REFERENCES establecimiento(id_establecimiento),
+cupos smallint
+);
+
+CREATE TABLE ticket(
+id_ticket bigint PRIMARY KEY,
+id_usuario integer REFERENCES usuario(id_usuario),
+id_cola integer REFERENCES cola(id_cola),
+posicion smallint,
+tamano_cola smallint
+);
