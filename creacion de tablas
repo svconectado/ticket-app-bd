@@ -5,14 +5,22 @@ tipo_notif char(3) NOT NULL,
 tipo_usuario varchar(15)
 );
 
-CREATE TABLE tipo_establecimiento(
-id_tipo_establecimiento integer PRIMARY KEY,
-tipo_establecimiento varchar(100)
+CREATE TABLE tipo_empresa(
+id_tipo_empresa integer PRIMARY KEY,
+tipo_empresa varchar(100)
+);
+
+CREATE TABLE empresa(
+id_empresa integer PRIMARY KEY,
+nombre varchar(100),
+nombre_corto varchar(20),
+id_tipo_empresa REFERENCES tipo_empresa(id_tipo_empresa),
+nit varcha(14)
 );
 
 CREATE TABLE establecimiento(
 id_establecimiento integer PRIMARY KEY,
-id_tipo_establecimiento integer REFERENCES tipo_establecimiento(id_tipo_establecimiento),
+id_empresa integer REFERENCES empresa(id_empresa),
 nombre_establecimiento varchar(250),
 latitud float,
 longitud float,
