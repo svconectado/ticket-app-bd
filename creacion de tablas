@@ -1,4 +1,4 @@
-CREATE TABLE usuario(
+cCREATE TABLE usuario(
 id_usuario serial PRIMARY KEY,
 nombre varchar(40),
 telefono char(8),
@@ -14,7 +14,7 @@ CREATE TABLE empresa(
 id_empresa serial PRIMARY KEY,
 nombre varchar(100),
 nombre_corto varchar(20),
-id_tipo_empresa REFERENCES tipo_empresa(id_tipo_empresa),
+id_tipo_empresa integer REFERENCES tipo_empresa(id_tipo_empresa),
 nit varchar(14)
 );
 
@@ -25,8 +25,8 @@ nombre_establecimiento varchar(250),
 direccion1 varchar(250),
 direccion2 varchar(250),
 duracion_vencimiento_minutos integer,
-latitud float,
-longitud float,
+latitud numeric,
+longitud numeric
 );
 
 CREATE TABLE cola(
