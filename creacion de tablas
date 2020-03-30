@@ -33,7 +33,8 @@ CREATE TABLE cola(
 id_cola serial PRIMARY KEY,
 descripcion varchar(250),
 id_establecimiento integer REFERENCES establecimiento(id_establecimiento),
-cupos smallint
+cupos smallint,
+ultimo_atendido bigint
 );
 
 CREATE TABLE ticket(
