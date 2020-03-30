@@ -1,42 +1,50 @@
 CREATE TABLE usuario(
-id_usuario integer PRIMARY KEY,
+id_usuario serial PRIMARY KEY,
 nombre varchar(40),
-tipo_notif char(3) NOT NULL,
-tipo_usuario varchar(15)
+telefono char(8),
+tipo_notif char(3)
 );
 
 CREATE TABLE tipo_empresa(
-id_tipo_empresa integer PRIMARY KEY,
+id_tipo_empresa serial PRIMARY KEY,
 tipo_empresa varchar(100)
 );
 
 CREATE TABLE empresa(
-id_empresa integer PRIMARY KEY,
+id_empresa serial PRIMARY KEY,
 nombre varchar(100),
 nombre_corto varchar(20),
 id_tipo_empresa REFERENCES tipo_empresa(id_tipo_empresa),
-nit varcha(14)
+nit varchar(14)
 );
 
 CREATE TABLE establecimiento(
-id_establecimiento integer PRIMARY KEY,
+id_establecimiento serial PRIMARY KEY,
 id_empresa integer REFERENCES empresa(id_empresa),
 nombre_establecimiento varchar(250),
+direccion1 varchar(250),
+direccion2 varchar(250),
+duracion_vencimiento_minutos integer,
 latitud float,
 longitud float,
 );
 
 CREATE TABLE cola(
-id_cola integer PRIMARY KEY,
+id_cola serial PRIMARY KEY,
 descripcion varchar(250),
 id_establecimiento integer REFERENCES establecimiento(id_establecimiento),
 cupos smallint
 );
 
 CREATE TABLE ticket(
-id_ticket bigint PRIMARY KEY,
+id_ticket bigserial PRIMARY KEY,
 id_usuario integer REFERENCES usuario(id_usuario),
 id_cola integer REFERENCES cola(id_cola),
 posicion smallint,
-tamano_cola smallint
+estado integer,
+generado_en timestamp,
+inicio_turno timestamp,
+vencimiento timestamp,
+atendido_en timestamp,
+ultima_notificacion timestamp
 );
