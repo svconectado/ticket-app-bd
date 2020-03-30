@@ -1,4 +1,4 @@
-cCREATE TABLE usuario(
+CREATE TABLE usuario(
 id_usuario serial PRIMARY KEY,
 nombre varchar(40),
 telefono char(8),
