@@ -1,0 +1,13 @@
+----------------CREACION DE TIPO DE EMPRESA 'BANCO' E INSERCION DE EMPRESA DE ESE TIPO
+begin transaction
+
+insert into tipo_empresa (tipo_empresa)
+values ('Banco');
+--1 REGISTRO
+
+insert into empresa (nombre,nombre_corto,id_tipo_empresa)
+values ('Davivienda','Davi',(select id_tipo_empresa from tipo_empresa where tipo_empresa = 'Banco'));
+--1 REGISTRO
+
+--rollback
+--commit
