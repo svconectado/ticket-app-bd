@@ -1,0 +1,9 @@
+----------SCRIPT PARA GENERAR UNA COLA POR DEFECTO PARA CADA ESTABLECIMIENTO
+begin transaction
+
+insert into cola(descripcion, id_establecimiento,cupos)
+select 'PRINCIPAL',id_establecimiento ,100 from establecimiento
+	where id_empresa = (select id_empresa from empresa where nombre_corto ='Davi');
+	
+--commit
+--rollback
