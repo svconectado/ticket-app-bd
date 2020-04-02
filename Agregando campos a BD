@@ -1,0 +1,7 @@
+------AGREGANDO CAMPOS tipo texto
+--Tabla tipo_empresa: agregando campos descripcion e imagen
+--Tabla usuario agregando campo password
+
+alter table tipo_empresa add descripcion text;
+alter table tipo_empresa add imagen text;
+alter table usuario add password text;
