@@ -1,51 +1,126 @@
-CREATE TABLE usuario(
-id_usuario serial PRIMARY KEY,
-nombre varchar(40),
-telefono char(8),
-tipo_notif char(3)
+-- CREACION DE TABLAS EXTRAIDO DE SERVER POSGRESQL
+
+-- public.rol definition
+
+-- Drop table
+
+-- DROP TABLE public.rol;
+
+CREATE TABLE public.rol (
+	id serial NOT NULL,
+	"name" text NULL,
+	status text NULL,
+	CONSTRAINT rol_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE tipo_empresa(
-id_tipo_empresa serial PRIMARY KEY,
-tipo_empresa varchar(100)
+
+-- public.tipo_empresa definition
+
+-- Drop table
+
+-- DROP TABLE public.tipo_empresa;
+
+CREATE TABLE public.tipo_empresa (
+	id_tipo_empresa serial NOT NULL,
+	tipo_empresa varchar(100) NULL,
+	descripcion text NULL,
+	imagen text NULL,
+	CONSTRAINT tipo_empresa_pkey PRIMARY KEY (id_tipo_empresa)
 );
 
-CREATE TABLE empresa(
-id_empresa serial PRIMARY KEY,
-nombre varchar(100),
-nombre_corto varchar(20),
-id_tipo_empresa integer REFERENCES tipo_empresa(id_tipo_empresa),
-nit varchar(14)
+
+-- public.empresa definition
+
+-- Drop table
+
+-- DROP TABLE public.empresa;
+
+CREATE TABLE public.empresa (
+	id_empresa serial NOT NULL,
+	nombre varchar(100) NULL,
+	nombre_corto varchar(20) NULL,
+	id_tipo_empresa int4 NULL,
+	nit varchar(14) NULL,
+	CONSTRAINT empresa_pkey PRIMARY KEY (id_empresa),
+	CONSTRAINT empresa_id_tipo_empresa_fkey FOREIGN KEY (id_tipo_empresa) REFERENCES tipo_empresa(id_tipo_empresa)
 );
 
-CREATE TABLE establecimiento(
-id_establecimiento serial PRIMARY KEY,
-id_empresa integer REFERENCES empresa(id_empresa),
-nombre_establecimiento varchar(250),
-direccion1 varchar(250),
-direccion2 varchar(250),
-duracion_vencimiento_minutos integer,
-latitud numeric,
-longitud numeric
+
+-- public.establecimiento definition
+
+-- Drop table
+
+-- DROP TABLE public.establecimiento;
+
+CREATE TABLE public.establecimiento (
+	id_establecimiento serial NOT NULL,
+	id_empresa int4 NULL,
+	nombre_establecimiento varchar(250) NULL,
+	direccion1 varchar(250) NULL,
+	direccion2 varchar(250) NULL,
+	latitud numeric NULL,
+	longitud numeric NULL,
+	CONSTRAINT establecimiento_pkey PRIMARY KEY (id_establecimiento),
+	CONSTRAINT establecimiento_id_empresa_fkey FOREIGN KEY (id_empresa) REFERENCES empresa(id_empresa)
 );
 
-CREATE TABLE cola(
-id_cola serial PRIMARY KEY,
-descripcion varchar(250),
-id_establecimiento integer REFERENCES establecimiento(id_establecimiento),
-cupos smallint,
-ultimo_atendido bigint
+
+-- public.usuario definition
+
+-- Drop table
+
+-- DROP TABLE public.usuario;
+
+CREATE TABLE public.usuario (
+	id_usuario serial NOT NULL,
+	nombre varchar(40) NULL,
+	telefono bpchar(8) NULL,
+	tipo_notif bpchar(3) NULL,
+	"password" text NULL,
+	id_rol int4 NULL,
+	id_empresa int4 NULL,
+	email text NULL,
+	CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario),
+	CONSTRAINT usuario_id_empresa_fkey FOREIGN KEY (id_empresa) REFERENCES empresa(id_empresa),
+	CONSTRAINT usuario_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES rol(id)
 );
 
-CREATE TABLE ticket(
-id_ticket bigserial PRIMARY KEY,
-id_usuario integer REFERENCES usuario(id_usuario),
-id_cola integer REFERENCES cola(id_cola),
-posicion smallint,
-estado integer,
-generado_en timestamp,
-inicio_turno timestamp,
-vencimiento timestamp,
-atendido_en timestamp,
-ultima_notificacion timestamp
+
+-- public.cola definition
+
+-- Drop table
+
+-- DROP TABLE public.cola;
+
+CREATE TABLE public.cola (
+	id_cola serial NOT NULL,
+	descripcion varchar(250) NULL,
+	id_establecimiento int4 NULL,
+	cupos int2 NULL,
+	ultimo_atendido int8 NULL,
+	duracion_vencimiento_minutos int2 NULL DEFAULT 15,
+	CONSTRAINT cola_pkey PRIMARY KEY (id_cola),
+	CONSTRAINT cola_id_establecimiento_fkey FOREIGN KEY (id_establecimiento) REFERENCES establecimiento(id_establecimiento)
+);
+
+
+-- public.ticket definition
+
+-- Drop table
+
+-- DROP TABLE public.ticket;
+
+CREATE TABLE public.ticket (
+	id_ticket bigserial NOT NULL,
+	id_cola int4 NULL,
+	posicion int2 NULL,
+	estado int4 NULL,
+	generado_en timestamp NULL,
+	inicio_turno timestamp NULL,
+	vencimiento timestamp NULL,
+	atendido_en timestamp NULL,
+	ultima_notificacion timestamp NULL,
+	device_id text NULL,
+	CONSTRAINT ticket_pkey PRIMARY KEY (id_ticket),
+	CONSTRAINT ticket_id_cola_fkey FOREIGN KEY (id_cola) REFERENCES cola(id_cola)
 );
