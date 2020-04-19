@@ -56,7 +56,16 @@ insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitu
 insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	UNIVERSITARIA	','	25a. Av. Nte. y 29 Calle Pte.	',	13.71444167	,	-89.20333889	,30);
 insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	USULUTÁN	','	Av.Napoleon Flores Hueso y calle grimaldi,Usulutàn	',	13.34451111	,	-88.43888611	,30);
 insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	WORLD TRADE CENTER	','	Torre Futura, Complejo World Trade Center, 87 Avenida Norte y Calle El Mirador, Colonia Escalón, Plaza Comercial, Locales No. 20 21 y 24  San Salvador.	',	13.70842222	,	-89.24134722	,30);
-insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	ZACATECOLUCA	','	Av.Narciso Monterrey No. 7	',	13.50701944	,	-88.86976667	,30);
+insert into establecimiento (id_presa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	ZACATECOLUCA	','	Av.Narciso Monterrey No. 7	',	13.50701944	,	-88.86976667	,30);
+
+------Insertando empresa farmacias económicas
+insert into empresa(nombre, nombre_corto,id_tipo_empresa )
+values('Farmacias Económicas','Farm.Econ.',
+(select id_tipo_empresa from tipo_empresa where tipo_empresa ='FARMACIA'));
+
+insert into empresa(nombre, nombre_corto,id_tipo_empresa )
+values('Super Selectos','Selectos',
+(select id_tipo_empresa from tipo_empresa where tipo_empresa ='SUPERMERCADO'));
 
 ------INSERTANDO SUCURSALES FARMACIAS ECONOMICAS
 insert into establecimiento (id_empresa,nombre_establecimiento, direccion1,latitud,longitud)
