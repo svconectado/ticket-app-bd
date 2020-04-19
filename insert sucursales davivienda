@@ -58,5 +58,23 @@ insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitu
 insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	WORLD TRADE CENTER	','	Torre Futura, Complejo World Trade Center, 87 Avenida Norte y Calle El Mirador, Colonia Escalón, Plaza Comercial, Locales No. 20 21 y 24  San Salvador.	',	13.70842222	,	-89.24134722	,30);
 insert into establecimiento (id_empresa,nombre_establecimiento,direccion1,latitud,longitud,duracion_vencimiento_minutos) values((select id_empresa from empresa where nombre_corto = 'Davi'),'	ZACATECOLUCA	','	Av.Narciso Monterrey No. 7	',	13.50701944	,	-88.86976667	,30);
 
+------INSERTANDO SUCURSALES FARMACIAS ECONOMICAS
+insert into establecimiento (id_empresa,nombre_establecimiento, direccion1,latitud,longitud)
+values((select id_empresa from empresa where nombre_corto ='Farm.Econ.'),'Constitución',
+'Centro Comercial Miralvalle. 1a Planta, L 3 y 4 Blvd. Constitución Calle El Algodón, Col. Miralvalle. S.S San Salvador CP, 1101',13.7193551,-89.2223982);
+
+insert into establecimiento (id_empresa,nombre_establecimiento, direccion1,latitud,longitud)
+values((select id_empresa from empresa where nombre_corto ='Farm.Econ.'),'Zona Rosa',
+'Boulevard del Hipódromo y Avenida La Revolución, frente a Redondel Italia, Colonia San Benito, Local 1-A, Ciudad y Departamento de San Salvador.',13.7193551,-89.2223982);
+
+------INSERTANDO SUCURSALES SELECTOS
+insert into establecimiento (id_empresa,nombre_establecimiento, direccion1,latitud,longitud)
+values((select id_empresa from empresa where nombre_corto ='Selectos'),'Masferrer',
+'Redondel Masferrer, San Saslvador',13.7042097,-89.2501412);
+
+insert into establecimiento (id_empresa,nombre_establecimiento, direccion1,latitud,longitud)
+values((select id_empresa from empresa where nombre_corto ='Selectos'),'Los Santos',
+'Av las Camelias, San Salvador',13.6930571,-89.229126);
+
 --commit
 --rollback
